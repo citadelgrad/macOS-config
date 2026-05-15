@@ -1,0 +1,2 @@
+# Ignore package versions published less than 3 days ago (supply chain protection).
+exclude-newer = "3 days"
