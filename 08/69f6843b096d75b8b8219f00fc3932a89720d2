@@ -1,0 +1,42 @@
+local.yml
+  s_86491924023bbe::t_df79103d3d1140 8
+roles/ai-tools/tasks/configure-git.yml
+  s_86491924023bbe::t_81eb600712589d 1-51
+roles/ai-tools/tasks/configure-package-age.yml
+  s_86491924023bbe::t_4b815f3cd5f3ae 1-33
+roles/ai-tools/tasks/install-tools.yml
+  s_86491924023bbe::t_bdcb6168407de4 26-29
+  s_86491924023bbe::t_8b599cae876500 1-25,30-50
+roles/ai-tools/templates/gitignore_global.j2
+  s_86491924023bbe::t_67660c92524ac6 1-40
+roles/ai-tools/tasks/configure-dcg.yml
+  s_86491924023bbe::t_c1722774d3bd20 1-55
+roles/ai-tools/templates/dcg-config.toml.j2
+  s_86491924023bbe::t_c236f92705c272 1-7
+roles/ai-tools/tasks/main.yml
+  s_86491924023bbe::t_0bdb58465b5481 1-6
+roles/ai-tools/tasks/configure-skills.yml
+  s_86491924023bbe::t_4f1786c97a9b25 1-48
+roles/ai-tools/defaults/main.yml
+  s_86491924023bbe::t_9d5ce7793622ed 1-8
+roles/ai-tools/templates/npmrc.j2
+  s_86491924023bbe::t_c500f993c70e81 1-3
+roles/ai-tools/templates/uv-config.toml.j2
+  s_86491924023bbe::t_2b93886781a083 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "0869f6843b096d75b8b8219f00fc3932a89720d2",
+  "prompts": {},
+  "sessions": {
+    "s_86491924023bbe": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a44597d0-2784-4bb5-aa21-0d7427b65300",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    }
+  }
+}
