@@ -1,0 +1,6 @@
+---
+- ansible.builtin.import_tasks: configure-skills.yml
+- ansible.builtin.import_tasks: install-tools.yml
+- ansible.builtin.import_tasks: configure-git.yml
+- ansible.builtin.import_tasks: configure-package-age.yml
+- ansible.builtin.import_tasks: configure-dcg.yml

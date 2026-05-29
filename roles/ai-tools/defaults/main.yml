@@ -1,0 +1,8 @@
+---
+projects_dir: "{{ ansible_env.HOME }}/projects"
+scott_cc_repo_url: "https://github.com/citadelgrad/scott-cc.git"
+scott_cc_path: "{{ projects_dir }}/oss/scott-cc"
+package_min_age_days: 3
+git_user_name: ""
+git_user_email: ""
+git_default_branch: "main"

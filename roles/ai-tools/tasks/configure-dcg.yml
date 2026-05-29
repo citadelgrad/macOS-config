@@ -1,0 +1,55 @@
+---
+- name: Ensure dcg config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/dcg"
+    state: directory
+    mode: '0755'
+
+- name: Deploy dcg config
+  ansible.builtin.template:
+    src: dcg-config.toml.j2
+    dest: "{{ ansible_env.HOME }}/.config/dcg/config.toml"
+    mode: '0644'
+
+- name: Check if Hermes config exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.hermes/config.yaml"
+  register: hermes_config_stat
+
+- name: Configure dcg hook in Hermes config
+  ansible.builtin.shell: |
+    uv run --with pyyaml python3 << 'PYEOF'
+    import os, yaml, shlex
+
+    cfg_file = os.path.expanduser("~/.hermes/config.yaml")
+    dcg_path = os.path.expanduser("~/.local/bin/dcg")
+
+    def is_dcg(cmd):
+        if not isinstance(cmd, str): return False
+        try: tokens = shlex.split(cmd)
+        except ValueError: return False
+        if not tokens: return False
+        name = os.path.basename(tokens[0])
+        return name.rstrip(".exe") == "dcg"
+
+    with open(cfg_file) as f:
+        cfg = yaml.safe_load(f) or {}
+
+    hooks = cfg.setdefault("hooks", {})
+    ptc = hooks.setdefault("pre_tool_call", [])
+
+    if any(isinstance(e, dict) and is_dcg(e.get("command", "")) for e in ptc):
+        print("dcg already configured in Hermes")
+    else:
+        ptc.insert(0, {"matcher": "terminal", "command": dcg_path, "timeout": 30})
+        hooks["pre_tool_call"] = ptc
+        if "hooks_auto_accept" not in cfg:
+            cfg["hooks_auto_accept"] = True
+        with open(cfg_file, "w") as f:
+            yaml.safe_dump(cfg, f, sort_keys=False, default_flow_style=False)
+        print("dcg hook added to Hermes")
+    PYEOF
+  when: hermes_config_stat.stat.exists
+  args:
+    executable: /bin/bash
+  changed_when: false

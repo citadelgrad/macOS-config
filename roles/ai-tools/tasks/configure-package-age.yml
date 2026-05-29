@@ -1,0 +1,33 @@
+---
+- name: Deploy ~/.npmrc with package age restriction
+  ansible.builtin.template:
+    src: npmrc.j2
+    dest: "{{ ansible_env.HOME }}/.npmrc"
+    mode: '0644'
+    backup: true
+
+- name: Ensure uv config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/uv"
+    state: directory
+    mode: '0755'
+
+- name: Deploy uv config with package age restriction
+  ansible.builtin.template:
+    src: uv-config.toml.j2
+    dest: "{{ ansible_env.HOME }}/.config/uv/uv.toml"
+    mode: '0644'
+    backup: true
+
+- name: Ensure pip config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/pip"
+    state: directory
+    mode: '0755'
+
+- name: Deploy pip config with package age restriction
+  ansible.builtin.template:
+    src: pip-conf.j2
+    dest: "{{ ansible_env.HOME }}/.config/pip/pip.conf"
+    mode: '0644'
+    backup: true

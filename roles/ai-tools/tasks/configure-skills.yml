@@ -1,0 +1,48 @@
+---
+- name: Ensure projects/oss directory exists
+  ansible.builtin.file:
+    path: "{{ projects_dir }}/oss"
+    state: directory
+    mode: '0755'
+
+- name: Clone scott-cc plugin repo
+  ansible.builtin.git:
+    repo: "{{ scott_cc_repo_url }}"
+    dest: "{{ scott_cc_path }}"
+    update: false   # don't pull — git pull is manual
+  register: scott_cc_clone
+
+- name: Ensure Hermes skills directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.hermes/skills"
+    state: directory
+    mode: '0755'
+
+- name: Ensure Codex skills directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.codex/skills"
+    state: directory
+    mode: '0755'
+
+- name: Find scott-cc skill directories
+  ansible.builtin.find:
+    paths: "{{ scott_cc_path }}/skills"
+    file_type: directory
+    depth: 1
+  register: scott_cc_skills
+
+- name: Symlink skills into Hermes
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_env.HOME }}/.hermes/skills/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ scott_cc_skills.files }}"
+
+- name: Symlink skills into Codex
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_env.HOME }}/.codex/skills/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ scott_cc_skills.files }}"

@@ -1,0 +1,7 @@
+[global]
+index-url = https://pypi.org/simple
+
+[install]
+# Ignore package versions uploaded less than {{ package_min_age_days }} days ago (supply chain protection).
+# Requires pip >= 26.0. No-op on older versions.
+uploaded-prior-to = P{{ package_min_age_days }}D

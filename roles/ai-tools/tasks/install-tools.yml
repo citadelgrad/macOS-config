@@ -1,0 +1,50 @@
+---
+- name: Install pre-commit, ruff, biome via Homebrew
+  community.general.homebrew:
+    name:
+      - pre-commit
+      - ruff
+      - biome
+    state: present
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: Check if uv is installed
+  ansible.builtin.command: which uv
+  register: uv_check
+  changed_when: false
+  failed_when: false
+
+- name: Install uv (Python package manager)
+  ansible.builtin.shell: |
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+  when: uv_check.rc != 0
+  args:
+    executable: /bin/bash
+
+- name: Install ty Python type checker
+  ansible.builtin.shell: |
+    UV="{{ ansible_env.HOME }}/.local/bin/uv"
+    [ -x "$UV" ] || UV="{{ ansible_env.HOME }}/.cargo/bin/uv"
+    [ -x "$UV" ] || UV="$(which uv 2>/dev/null)"
+    "$UV" tool install ty --upgrade
+  changed_when: false
+  args:
+    executable: /bin/bash
+
+- name: Check if dcg is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/bin/dcg"
+  register: dcg_stat
+
+- name: Install dcg (destructive command guard)
+  ansible.builtin.shell: |
+    curl -fsSL "https://raw.githubusercontent.com/Dicklesworthstone/destructive_command_guard/main/install.sh?$(date +%s)" \
+      | bash -s -- --easy-mode
+  when: not dcg_stat.stat.exists
+  args:
+    executable: /bin/bash
+
+- name: Update dcg to latest version
+  ansible.builtin.command: "{{ ansible_env.HOME }}/.local/bin/dcg update"
+  when: dcg_stat.stat.exists
+  changed_when: false
