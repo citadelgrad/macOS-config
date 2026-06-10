@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+config_file="$HOME/.config/wezterm/glass.lua"
+
+if command -v wezterm >/dev/null 2>&1; then
+  exec wezterm --config-file "$config_file" start "$@"
+fi
+
+brew_prefix=""
+if command -v brew >/dev/null 2>&1; then
+  brew_prefix="$(brew --prefix 2>/dev/null || true)"
+fi
+
+candidates=()
+if [[ -n "$brew_prefix" ]]; then
+  candidates+=(
+    "$brew_prefix/bin/wezterm"
+    "$brew_prefix/Caskroom/wezterm/latest/WezTerm.app/Contents/MacOS/wezterm"
+  )
+fi
+
+candidates+=(
+  /Applications/WezTerm.app/Contents/MacOS/wezterm
+  "$HOME/Applications/WezTerm.app/Contents/MacOS/wezterm"
+  /Volumes/qwiizlab/Applications/WezTerm.app/Contents/MacOS/wezterm
+  /opt/homebrew/bin/wezterm
+  /usr/local/bin/wezterm
+)
+
+for candidate in "${candidates[@]}"; do
+  if [[ -x "$candidate" ]]; then
+    exec "$candidate" --config-file "$config_file" start "$@"
+  fi
+done
+
+echo "Could not find wezterm binary. Install WezTerm or add it to PATH." >&2
+exit 127
