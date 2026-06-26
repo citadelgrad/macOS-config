@@ -1,0 +1,19 @@
+home/dot_config/wezterm/wezterm.lua
+  s_fc7c0b6ce8bc45::t_f7b233b6ef62d3 1-131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "522b822faf18265d4533b61880fda6901b12bc2f",
+  "prompts": {},
+  "sessions": {
+    "s_fc7c0b6ce8bc45": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "22846188-f9ce-42f2-8b82-53fbd7d44132",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    }
+  }
+}
