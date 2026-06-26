@@ -1,0 +1,19 @@
+home/dot_config/fish/functions/hermes.fish
+  s_fc7c0b6ce8bc45::t_e45f4c41f9be2c 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "182c418c3f966f789fa306682c933be1270f2e00",
+  "prompts": {},
+  "sessions": {
+    "s_fc7c0b6ce8bc45": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "22846188-f9ce-42f2-8b82-53fbd7d44132",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    }
+  }
+}
