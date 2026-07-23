@@ -1,0 +1,23 @@
+home/dot_config/fish/config.fish.tmpl
+  0fec42e22f413755 4-8,20-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.5",
+  "base_commit_sha": "85b67684001df8ce655acdfc862659d5690b906b",
+  "prompts": {
+    "0fec42e22f413755": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e82bacd1-c07a-48b8-b0d8-fc880827ae82",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "messages": [],
+      "total_additions": 17,
+      "total_deletions": 0,
+      "accepted_lines": 17,
+      "overriden_lines": 0
+    }
+  }
+}
