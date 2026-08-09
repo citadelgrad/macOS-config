@@ -3,7 +3,7 @@
     email = "citadelgrad@gmail.com"
 
 [editor]
-    default = "code"
+    default = "zed"
 
 [shell]
     primary = "fish"
