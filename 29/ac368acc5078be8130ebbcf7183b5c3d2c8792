@@ -1,0 +1,33 @@
+home/dot_gitconfig.tmpl
+  s_fa8022598284a6::t_587664ff939e8b 23-31
+  36ce478940201270 7,15-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "29ac368acc5078be8130ebbcf7183b5c3d2c8792",
+  "prompts": {
+    "36ce478940201270": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "51995541-90c2-4fdc-9cf3-4170990aa40b",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 10,
+      "overriden_lines": 0
+    }
+  },
+  "sessions": {
+    "s_fa8022598284a6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "62803d14-21e2-4e69-8b15-ffb9fd2d1b44",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    }
+  }
+}
