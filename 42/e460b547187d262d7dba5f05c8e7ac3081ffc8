@@ -1,0 +1,23 @@
+home/dot_config/ports/PORTS.md
+  s_cbefd68c043fb7::t_6dd3d6a719e00b 1-145
+home/dot_config/ports/ports.yaml
+  s_cbefd68c043fb7::t_11293e6955eaf9 1-62
+home/dot_local/bin/executable_ports-check
+  s_cbefd68c043fb7::t_b820f4ceabccd6 1-88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "42e460b547187d262d7dba5f05c8e7ac3081ffc8",
+  "prompts": {},
+  "sessions": {
+    "s_cbefd68c043fb7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bafcc7b6-250d-4a69-a7fd-88b759ec931f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    }
+  }
+}
