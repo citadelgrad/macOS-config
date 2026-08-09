@@ -11,10 +11,18 @@ abbr -a gd 'git diff'
 abbr -a gs 'git status'
 
 # chezmoi
-abbr -a cm chezmoi
 abbr -a cma 'chezmoi apply'
 abbr -a cme 'chezmoi edit'
 abbr -a cmd 'chezmoi diff'
 
+# Navigation
+abbr -a cdp 'cd ~/projects'
+
 # uv
 abbr -a uvs 'uv sync --extra dev'
+
+# Local dev ports
+alias ports '/Users/scott/.local/bin/ports-check'
+
+# Xcode
+abbr -a xcode-accept 'sudo xcodebuild -license accept'

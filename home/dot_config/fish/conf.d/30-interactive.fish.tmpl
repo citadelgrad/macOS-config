@@ -21,9 +21,26 @@ if status is-interactive
     # gcloud
     alias gcloud_auth "gcloud auth application-default login --project=prod-meal-mentor"
 
-    # Claude (using bun for faster startup)
-    alias cc "bun x @anthropic-ai/claude-code --dangerously-skip-permissions"
-    alias cc-kimi 'bun x @anthropic-ai/claude-code --dangerously-skip-permissions --model "ollama:kimi-k2.5:cloud"'
+    # Claude
+    if test -x /opt/homebrew/bin/claude
+        alias claude "env -u ANTHROPIC_API_KEY /opt/homebrew/bin/claude"
+        alias cc "env -u ANTHROPIC_API_KEY /opt/homebrew/bin/claude --dangerously-skip-permissions"
+        alias cc-kimi 'env -u ANTHROPIC_API_KEY /opt/homebrew/bin/claude --dangerously-skip-permissions --model "ollama:kimi-k2.5:cloud"'
+    end
+    alias cx "codex run --dangerously-bypass-approvals-and-sandbox"
+
+    # Run bd ready automatically before Hermes in bd-managed repos
+    function hermes --wraps hermes --description 'Run bd ready --json in bd repos before starting Hermes'
+        set -l repo_root (command git rev-parse --show-toplevel 2>/dev/null)
+
+        if test -n "$repo_root"
+            and command -q bd
+            and test -f "$repo_root/.beads/config.yaml"
+            command bd ready --json >/dev/null 2>&1
+        end
+
+        command hermes $argv
+    end
 
     # Modern CLI replacements
     if command -q lsd
