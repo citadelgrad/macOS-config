@@ -1,0 +1,115 @@
+home/dot_config/fish/conf.d/20-abbr.fish
+  66f6074796d042ed 18-20
+  s_cbefd68c043fb7::t_8fce277a59517b 23-28
+home/dot_config/fish/config.fish.tmpl
+  s_fa8022598284a6::t_cd13224079a82c 47-49
+  s_fa8022598284a6::t_40fd1120fd19b2 18-22
+  2529fa59274cf750 45
+  fc32cea735000a1a 41-43
+  51fc1aa2d243f537 32
+  fc32cea735000a1a 38-40
+  s_fa8022598284a6::t_0539bf2c26f275 35-37
+home/dot_config/fish/conf.d/10-env.fish.tmpl
+  36ce478940201270 5
+  36ce478940201270 6
+home/dot_config/fish/conf.d/30-interactive.fish.tmpl
+  s_5b11c1159dd80c::t_72f5363ab0e7ab 26-28
+  s_5b11c1159dd80c::t_8aacc9b9079c1d 24-25
+  s_5b11c1159dd80c::t_b472b5527becf9 29-31
+  s_5b11c1159dd80c::t_caa9b6f3969807 32-43
+home/dot_config/fish/conf.d/00-path.fish.tmpl
+  s_cbefd68c043fb7::t_cf9378f7224863 5-6,10-11,16,20,24,27-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "c3bd48de89d2d5416c499ba7bc2afb0d146d03f8",
+  "prompts": {
+    "2529fa59274cf750": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9a4c0c98-f0ce-40df-b4c9-c89056ed8ad6",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "36ce478940201270": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "51995541-90c2-4fdc-9cf3-4170990aa40b",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 11,
+      "overriden_lines": 0
+    },
+    "51fc1aa2d243f537": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "54ef6649-0d72-4b1a-898d-67ef9844640c",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "66f6074796d042ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "af1814bd-2062-45d8-97b1-86d935d039c6",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 3,
+      "overriden_lines": 0
+    },
+    "fc32cea735000a1a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "72fb1e59-fb75-48dc-8fdb-851e0e3d7497",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 3,
+      "overriden_lines": 0
+    }
+  },
+  "sessions": {
+    "s_5b11c1159dd80c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3f41469-247a-4856-9d7a-5f08d07a169d",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    },
+    "s_cbefd68c043fb7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bafcc7b6-250d-4a69-a7fd-88b759ec931f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    },
+    "s_fa8022598284a6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "62803d14-21e2-4e69-8b15-ffb9fd2d1b44",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    }
+  }
+}
