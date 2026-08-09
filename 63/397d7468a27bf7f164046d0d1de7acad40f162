@@ -1,0 +1,45 @@
+home/dot_bashrc.tmpl
+  s_5b11c1159dd80c::t_e9802aef259a2b 3,5,14,16,19,21,26,28,31,33,35,41,43,45,49,51,57,61,66-74,76,79,81,84,86,94
+  s_5b11c1159dd80c::t_387afff1f52e03 1-2
+  s_5b11c1159dd80c::t_b7a850cadcfe2b 4
+  s_5b11c1159dd80c::t_4d500a338986ea 6-8,11-13
+  s_5b11c1159dd80c::t_8ee85a1e411c4f 15
+  s_5b11c1159dd80c::t_6d3bf83c60c3f5 17-18
+  s_5b11c1159dd80c::t_6b5f1e38da8cff 20
+  s_5b11c1159dd80c::t_41fa0864f4f437 22-25
+  s_5b11c1159dd80c::t_cf31dc23e13a6f 27
+  s_5b11c1159dd80c::t_55a65dcebc4afd 29-30
+  s_5b11c1159dd80c::t_57f9f52ed5cbb2 32
+  s_5b11c1159dd80c::t_84461a151fb70c 34
+  s_5b11c1159dd80c::t_1afe304079fd9c 36-40
+  s_5b11c1159dd80c::t_d63dc5d7ecfcb3 42
+  s_5b11c1159dd80c::t_353f70942799f2 44
+  s_5b11c1159dd80c::t_50b33e392574d7 46-48
+  s_5b11c1159dd80c::t_90cda6cab37366 50
+  s_5b11c1159dd80c::t_845daa8ee8e5df 52-56
+  s_5b11c1159dd80c::t_1f1dc8aa38a710 58-60
+  s_5b11c1159dd80c::t_923f702f5a215a 62-65
+  s_5b11c1159dd80c::t_dd2361aa370f28 75
+  s_5b11c1159dd80c::t_7fb0cc3c35450b 77-78
+  s_5b11c1159dd80c::t_da652ff9b21846 80
+  s_5b11c1159dd80c::t_a238941cd75108 82-83
+  s_5b11c1159dd80c::t_9e63cd4bab632b 85
+  s_5b11c1159dd80c::t_a01de7311b6d9f 87-89,91-93
+  s_5b11c1159dd80c::t_1d4436364f6137 9-10,90
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "63397d7468a27bf7f164046d0d1de7acad40f162",
+  "prompts": {},
+  "sessions": {
+    "s_5b11c1159dd80c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3f41469-247a-4856-9d7a-5f08d07a169d",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>"
+    }
+  }
+}
