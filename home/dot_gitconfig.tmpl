@@ -4,6 +4,7 @@
 [user]
 	email = {{ .git.email }}
 	name = {{ .git.name }}
+	signingkey = {{ .chezmoi.homeDir }}/.ssh/id_ed25519
 [init]
 	defaultBranch = main
 [filter "lfs"]
@@ -11,3 +12,20 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = {{ .chezmoi.homeDir }}/.ssh/allowed_signers
+[trace2]
+	eventTarget = af_unix:stream:{{ .chezmoi.homeDir }}/.git-ai/internal/daemon/trace2.sock
+	eventNesting = 0
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
