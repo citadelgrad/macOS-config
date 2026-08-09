@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REGISTRY="${PORT_REGISTRY:-$HOME/.config/ports/ports.yaml}"
+
+if [[ ! -f "$REGISTRY" ]]; then
+  echo "Registry not found: $REGISTRY" >&2
+  exit 1
+fi
+
+if ! command -v ruby >/dev/null 2>&1; then
+  echo "ruby is required (for YAML parsing)" >&2
+  exit 1
+fi
+
+if [[ "${1:-}" == "--free" ]]; then
+  shift
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: ports-check --free <port> [port ...]"
+    exit 1
+  fi
+  for p in "$@"; do
+    if lsof -nP -iTCP:"$p" -sTCP:LISTEN >/dev/null 2>&1; then
+      echo "$p used"
+    else
+      echo "$p free"
+    fi
+  done
+  exit 0
+fi
+
+TMP_EXPECTED="$(mktemp)"
+TMP_LISTENING="$(mktemp)"
+trap 'rm -f "$TMP_EXPECTED" "$TMP_LISTENING"' EXIT
+
+ruby -ryaml -e '
+  y=YAML.load_file(ARGV[0]) || {}
+  (y["ports"] || []).each do |p|
+    puts [p["port"], p["proto"] || "tcp", p["status"] || "unknown", p["owner"] || "", p["service"] || ""].join("\t")
+  end
+' "$REGISTRY" | sort -n > "$TMP_EXPECTED"
+
+lsof -nP -iTCP -sTCP:LISTEN | awk 'NR>1{split($9,a,":"); p=a[length(a)]; gsub(/\(LISTEN\)/,"",p); if (p ~ /^[0-9]+$/) print p"\t"$1"\t"$2}' | sort -n -u > "$TMP_LISTENING"
+
+echo "Registry: $REGISTRY"
+echo
+printf "%-6s %-10s %-10s %-24s %-28s %s\n" "PORT" "PROTO" "STATUS" "OWNER" "SERVICE" "LIVE"
+printf "%-6s %-10s %-10s %-24s %-28s %s\n" "----" "-----" "------" "-----" "-------" "----"
+
+while IFS=$'\t' read -r port proto status owner service; do
+  if grep -q "^${port}[[:space:]]" "$TMP_LISTENING"; then
+    live="yes"
+  else
+    live="no"
+  fi
+  printf "%-6s %-10s %-10s %-24s %-28s %s\n" "$port" "$proto" "$status" "$owner" "$service" "$live"
+done < "$TMP_EXPECTED"
+
+echo
+
+echo "Unregistered live listeners:"
+missing=0
+while IFS=$'\t' read -r port cmd pid; do
+  if ! awk -F'\t' -v p="$port" '$1==p{f=1} END{exit !f}' "$TMP_EXPECTED"; then
+    echo "  $port  $cmd (pid $pid)"
+    missing=1
+  fi
+done < "$TMP_LISTENING"
+if [[ $missing -eq 0 ]]; then
+  echo "  none"
+fi
+
+echo
+
+echo "Reserved-but-currently-in-use (potential conflict):"
+conflict=0
+while IFS=$'\t' read -r port proto status owner service; do
+  if [[ "$status" == "reserved" ]] && grep -q "^${port}[[:space:]]" "$TMP_LISTENING"; then
+    line=$(grep "^${port}[[:space:]]" "$TMP_LISTENING" | head -1)
+    cmd=$(echo "$line" | awk -F'\t' '{print $2}')
+    pid=$(echo "$line" | awk -F'\t' '{print $3}')
+    echo "  $port reserved for $owner/$service but used by $cmd (pid $pid)"
+    conflict=1
+  fi
+done < "$TMP_EXPECTED"
+if [[ $conflict -eq 0 ]]; then
+  echo "  none"
+fi

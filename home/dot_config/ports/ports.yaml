@@ -1,0 +1,62 @@
+version: 1
+updated_at: "2026-07-24"
+host: "scott-mac"
+
+ranges:
+  - {name: frontend_ui, start: 3000, end: 3099}
+  - {name: observability_ui, start: 3100, end: 3199}
+  - {name: internal_tools, start: 3200, end: 3299}
+  - {name: internal_api_monitoring, start: 4000, end: 4099}
+  - {name: postgres, start: 5400, end: 5499}
+  - {name: redis, start: 6300, end: 6399}
+  - {name: search, start: 7700, end: 7799}
+  - {name: app_api, start: 8000, end: 8199}
+  - {name: agent_backends, start: 8600, end: 8699}
+  - {name: mocks_twins, start: 8700, end: 8799}
+  - {name: object_storage_aux, start: 9000, end: 9099}
+  - {name: grpc_special, start: 50000, end: 50999}
+
+ports:
+  - {port: 3000, proto: tcp, status: allocated, owner: baseball, service: mlb_fantasy_web_dev}
+  - {port: 3002, proto: tcp, status: allocated, owner: baseball, service: grafana}
+  - {port: 3004, proto: tcp, status: allocated, owner: baseball, service: langfuse_web}
+  - {port: 3010, proto: tcp, status: allocated, owner: mission-control, service: mission-control_web}
+  - {port: 3011, proto: tcp, status: allocated, owner: hermes-workspace, service: hermes-workspace_web}
+  - {port: 3100, proto: tcp, status: allocated, owner: baseball, service: loki}
+  - {port: 3199, proto: tcp, status: allocated, owner: baseball, service: beads_dashboard}
+  - {port: 3201, proto: tcp, status: allocated, owner: docs, service: course_preview}
+  - {port: 37777, proto: tcp, status: ephemeral, owner: claude-mem, service: worker_service}
+  - {port: 3847, proto: tcp, status: ephemeral, owner: paperclip, service: bun_server}
+  - {port: 4001, proto: tcp, status: allocated, owner: baseball, service: obs_server}
+  - {port: 4002, proto: tcp, status: allocated, owner: baseball, service: obs_dashboard}
+  - {port: 4040, proto: tcp, status: allocated, owner: baseball, service: ngrok_inspector}
+  - {port: 5173, proto: tcp, status: allocated, owner: baseball, service: admin_web_dev}
+  - {port: 5432, proto: tcp, status: allocated, owner: local, service: postgres_host}
+  - {port: 5433, proto: tcp, status: allocated, owner: baseball, service: postgres_api}
+  - {port: 5434, proto: tcp, status: allocated, owner: baseball, service: postgres_langfuse}
+  - {port: 5435, proto: tcp, status: reserved, owner: baseball, service: postgres_zitadel}
+  - {port: 5555, proto: tcp, status: allocated, owner: baseball, service: flower}
+  - {port: 6378, proto: tcp, status: allocated, owner: baseball, service: redis_jobs}
+  - {port: 6379, proto: tcp, status: allocated, owner: baseball, service: redis_api}
+  - {port: 6380, proto: tcp, status: allocated, owner: baseball, service: redis_langfuse}
+  - {port: 7700, proto: tcp, status: allocated, owner: baseball, service: meilisearch}
+  - {port: 8000, proto: tcp, status: allocated, owner: baseball, service: mlb_api}
+  - {port: 8001, proto: tcp, status: allocated, owner: baseball, service: jobs_api}
+  - {port: 8090, proto: tcp, status: allocated, owner: baseball, service: admin_web_prod}
+  - {port: 8091, proto: tcp, status: allocated, owner: baseball, service: glitchtip}
+  - {port: 8123, proto: tcp, status: allocated, owner: baseball, service: clickhouse}
+  - {port: 8642, proto: tcp, status: allocated, owner: hermes-agent, service: hermes_webapi}
+  - {port: 8765, proto: tcp, status: allocated, owner: baseball, service: yahoo_fantasy_twin}
+  - {port: 3012, proto: tcp, status: allocated, owner: smb-ai-search-monitor, service: smb_vite_dev}
+  - {port: 3030, proto: tcp, status: reserved, owner: citadelgrad, service: blog_preview_docker}
+  - {port: 8787, proto: tcp, status: allocated, owner: smb-ai-search-monitor, service: smb_api}
+  - {port: 8791, proto: tcp, status: allocated, owner: unknown, service: node_dist_api}
+  - {port: 9000, proto: tcp, status: allocated, owner: baseball, service: minio_internal}
+  - {port: 9002, proto: tcp, status: allocated, owner: baseball, service: minio_api}
+  - {port: 9003, proto: tcp, status: allocated, owner: baseball, service: minio_console}
+  - {port: 9999, proto: tcp, status: allocated, owner: nixonnote, service: note}
+  - {port: 11434, proto: tcp, status: allocated, owner: local, service: ollama}
+  - {port: 9623, proto: tcp, status: allocated, owner: lightrag, service: lightrag_server}
+  - {port: 50051, proto: tcp, status: allocated, owner: baseball, service: zitadel_grpc}
+  - {port: 3020, proto: tcp, status: allocated, owner: field-guide, service: field_guide_web}
+  - {port: 8010, proto: tcp, status: allocated, owner: field-guide, service: field_guide_api}
