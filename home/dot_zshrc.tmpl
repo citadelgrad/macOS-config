@@ -19,14 +19,21 @@ ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git django python pip celery postgres brew macos)
+plugins=(git python pip celery postgres brew macos)
 
 [[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
+
+# =============================================================================
+# LOCAL BIN
+# =============================================================================
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
 # =============================================================================
 # EDITOR
 # =============================================================================
 export EDITOR='{{ .editor.default }}'
+export VISUAL='{{ .editor.default }}'
+export SOPS_EDITOR="nano"
 
 # =============================================================================
 # DIRENV
@@ -40,7 +47,7 @@ fi
 # =============================================================================
 if [[ -d "$HOME/.bun" ]]; then
     export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
+    export PATH="$PATH:$BUN_INSTALL/bin"
 fi
 
 # =============================================================================
@@ -85,6 +92,19 @@ command -v uu-tail &> /dev/null && alias tail='uu-tail'
 command -v uu-head &> /dev/null && alias head='uu-head'
 
 # =============================================================================
+# CLAUDE
+# =============================================================================
+if [[ -x /opt/homebrew/bin/claude ]]; then
+    alias claude='env -u ANTHROPIC_API_KEY /opt/homebrew/bin/claude'
+    alias cc='env -u ANTHROPIC_API_KEY /opt/homebrew/bin/claude --dangerously-skip-permissions'
+fi
+
+# =============================================================================
+# NAVIGATION ALIASES
+# =============================================================================
+alias cdp='cd ~/projects'
+
+# =============================================================================
 # DJANGO ALIASES
 # =============================================================================
 alias dj_debug_warnings="python -W error:\"\":RuntimeWarning:django.db.models.fields:0 manage.py runserver"
@@ -101,6 +121,27 @@ alias gp='git push'
 alias gl='git pull'
 
 # =============================================================================
+# CODEX ALIASES
+# =============================================================================
+alias cx='codex run --dangerously-bypass-approvals-and-sandbox'
+
+# =============================================================================
+# LOCAL DEV PORTS
+# =============================================================================
+alias ports='/Users/scott/.local/bin/ports-check'
+
+# =============================================================================
+# MCP AGENT MAIL
+# =============================================================================
+alias am='cd "/Users/scott/projects/mcp_agent_mail" && scripts/run_server_with_token.sh'
+
+# =============================================================================
+# BLENDER
+# =============================================================================
+export BLENDER_PATH="/Volumes/qwiizlab/Applications/Blender.app/Contents/MacOS"
+export PATH="$BLENDER_PATH:$PATH"
+
+# =============================================================================
 # ZSH PLUGINS (installed via Homebrew)
 # =============================================================================
 if command -v brew &> /dev/null; then
@@ -109,4 +150,21 @@ if command -v brew &> /dev/null; then
         source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
     [[ -f "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
         source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+# =============================================================================
+# GIT-AI
+# =============================================================================
+[[ -d "$HOME/.git-ai/bin" ]] && export PATH="$HOME/.git-ai/bin:$PATH"
+
+# =============================================================================
+# DCG
+# =============================================================================
+# Warn if the hook was silently removed from Claude Code settings.
+if command -v dcg &>/dev/null && command -v jq &>/dev/null; then
+  if [ -f "$HOME/.claude/settings.json" ] && \
+     ! jq -e '.hooks.PreToolUse[]? | select(.hooks[]?.command | test("dcg$"))' \
+       "$HOME/.claude/settings.json" &>/dev/null; then
+    printf '\033[1;33m[dcg] Hook missing from ~/.claude/settings.json — run: dcg install\033[0m\n'
+  fi
 fi
