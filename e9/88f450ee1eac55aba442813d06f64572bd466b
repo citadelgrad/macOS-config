@@ -1,0 +1,22 @@
+home/.chezmoidata.toml
+  36ce478940201270 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "e988f450ee1eac55aba442813d06f64572bd466b",
+  "prompts": {
+    "36ce478940201270": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "51995541-90c2-4fdc-9cf3-4170990aa40b",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Scott Nixon <citadelgrad@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
