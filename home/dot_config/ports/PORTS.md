@@ -1,6 +1,6 @@
 # Local Port Registry
 
-Last updated: 2026-07-24
+Last updated: 2026-09-18
 Host: scott-mac
 Purpose: single source of truth for local dev port allocation across all projects.
 
@@ -39,6 +39,7 @@ Purpose: single source of truth for local dev port allocation across all project
 | 3100 | tcp | allocated | baseball | loki | grafana-loki stack |
 | 3199 | tcp | allocated | baseball | beads dashboard | legacy/dev tool |
 | 3201 | tcp | allocated | docs | course preview | Background server managed by `make up`/`make down` |
+| 3202 | tcp | allocated | skill-cabinet | skill catalog UI | Homebrew service; `cabinet` alias for interactive launch |
 | 37777 | tcp | ephemeral | claude-mem | worker-service | detected listener; verify owner |
 | 3847 | tcp | ephemeral | paperclip | bun server | detected listener; verify owner |
 | 4001 | tcp | allocated | baseball | observability server | obs API |
@@ -54,6 +55,7 @@ Purpose: single source of truth for local dev port allocation across all project
 | 6379 | tcp | allocated | baseball | api redis | local redis also uses 6379 |
 | 6380 | tcp | allocated | baseball | langfuse redis | loopback-mapped |
 | 7265 | tcp | system | raycast | raycast local service | system app |
+| 7483 | tcp | allocated | zeno | zeno backend | uvicorn, bound to 127.0.0.1 |
 | 7700 | tcp | allocated | baseball | meilisearch | search engine |
 | 8000 | tcp | allocated | baseball | mlb_fantasy_api | fastapi |
 | 8001 | tcp | allocated | baseball | mlb_fantasy_jobs api | jobs api |
@@ -67,6 +69,7 @@ Purpose: single source of truth for local dev port allocation across all project
 | 9000 | tcp | allocated | baseball | langfuse object store internal | minio S3 API (loopback) |
 | 9002 | tcp | allocated | baseball | minio API | langfuse exposed API |
 | 9003 | tcp | allocated | baseball | minio console | langfuse admin UI |
+| 9119 | tcp | allocated | hermes | hermes dashboard | launchd `ai.hermes.dashboard`; listens on all interfaces (by design) |
 | 9999 | tcp | allocated | nixonnote | note | PID 34121: `/Volumes/qwiizlab/projects/nixonnote/target/release/note` |
 | 11434 | tcp | allocated | local ai | ollama | local model serving |
 | 50051 | tcp | allocated | baseball | zitadel grpc | zitadel service |

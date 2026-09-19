@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-07-24"
+updated_at: "2026-09-18"
 host: "scott-mac"
 
 ranges:
@@ -25,6 +25,7 @@ ports:
   - {port: 3100, proto: tcp, status: allocated, owner: baseball, service: loki}
   - {port: 3199, proto: tcp, status: allocated, owner: baseball, service: beads_dashboard}
   - {port: 3201, proto: tcp, status: allocated, owner: docs, service: course_preview}
+  - {port: 3202, proto: tcp, status: allocated, owner: skill-cabinet, service: skill_catalog_ui}
   - {port: 37777, proto: tcp, status: ephemeral, owner: claude-mem, service: worker_service}
   - {port: 3847, proto: tcp, status: ephemeral, owner: paperclip, service: bun_server}
   - {port: 4001, proto: tcp, status: allocated, owner: baseball, service: obs_server}
@@ -39,6 +40,7 @@ ports:
   - {port: 6378, proto: tcp, status: allocated, owner: baseball, service: redis_jobs}
   - {port: 6379, proto: tcp, status: allocated, owner: baseball, service: redis_api}
   - {port: 6380, proto: tcp, status: allocated, owner: baseball, service: redis_langfuse}
+  - {port: 7483, proto: tcp, status: allocated, owner: zeno, service: zeno_backend}
   - {port: 7700, proto: tcp, status: allocated, owner: baseball, service: meilisearch}
   - {port: 8000, proto: tcp, status: allocated, owner: baseball, service: mlb_api}
   - {port: 8001, proto: tcp, status: allocated, owner: baseball, service: jobs_api}
@@ -54,6 +56,7 @@ ports:
   - {port: 9000, proto: tcp, status: allocated, owner: baseball, service: minio_internal}
   - {port: 9002, proto: tcp, status: allocated, owner: baseball, service: minio_api}
   - {port: 9003, proto: tcp, status: allocated, owner: baseball, service: minio_console}
+  - {port: 9119, proto: tcp, status: allocated, owner: hermes, service: hermes_dashboard}
   - {port: 9999, proto: tcp, status: allocated, owner: nixonnote, service: note}
   - {port: 11434, proto: tcp, status: allocated, owner: local, service: ollama}
   - {port: 9623, proto: tcp, status: allocated, owner: lightrag, service: lightrag_server}
