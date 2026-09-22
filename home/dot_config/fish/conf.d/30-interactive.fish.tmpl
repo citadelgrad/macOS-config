@@ -29,19 +29,6 @@ if status is-interactive
     end
     alias cx "codex run --dangerously-bypass-approvals-and-sandbox"
 
-    # Run bd ready automatically before Hermes in bd-managed repos
-    function hermes --wraps hermes --description 'Run bd ready --json in bd repos before starting Hermes'
-        set -l repo_root (command git rev-parse --show-toplevel 2>/dev/null)
-
-        if test -n "$repo_root"
-            and command -q bd
-            and test -f "$repo_root/.beads/config.yaml"
-            command bd ready --json >/dev/null 2>&1
-        end
-
-        command hermes $argv
-    end
-
     # Modern CLI replacements
     if command -q lsd
         alias ls lsd
