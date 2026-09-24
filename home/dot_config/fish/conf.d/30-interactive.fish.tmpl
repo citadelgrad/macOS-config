@@ -2,12 +2,6 @@
 # Managed by chezmoi
 
 if status is-interactive
-    # pyenv init
-    if command -q pyenv
-        pyenv init - | source
-        pyenv virtualenv-init - | source
-    end
-
     # direnv hook
     if command -q direnv
         direnv hook fish | source

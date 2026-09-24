@@ -11,10 +11,6 @@ fish_add_path --move /opt/homebrew/bin
 fish_add_path --move /opt/homebrew/opt/node@22/bin
 {{ end -}}
 
-# pyenv
-set -gx PYENV_ROOT "$HOME/.pyenv"
-fish_add_path --move $PYENV_ROOT/bin
-
 # Bun
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --move --append $BUN_INSTALL/bin

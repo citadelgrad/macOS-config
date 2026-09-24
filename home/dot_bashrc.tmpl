@@ -31,16 +31,6 @@ if command -v direnv &> /dev/null; then
 fi
 
 # =============================================================================
-# PYENV
-# =============================================================================
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv &> /dev/null; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
-
-# =============================================================================
 # BLENDER
 # =============================================================================
 export BLENDER_PATH="/Volumes/qwiizlab/Applications/Blender.app/Contents/MacOS"
