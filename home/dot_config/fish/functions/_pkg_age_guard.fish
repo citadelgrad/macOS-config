@@ -82,7 +82,7 @@ except Exception:
 
     test "$result" = ok; and return 0
 
-    echo "pkg-age-guard: $ecosystem/$pkg$(test -n "$pkg_ver"; and echo "@$pkg_ver") is only $result old (minimum: {$min_days}d)" >&2
+    echo "pkg-age-guard: $ecosystem/$pkg$(test -n "$pkg_ver"; and echo "@$pkg_ver") is only $result old (minimum: $min_days days)" >&2
     return 1
 end
 

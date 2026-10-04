@@ -10,7 +10,7 @@ function uv --wraps uv --description "uv with 3-day publish age guard on add, pi
         --upgrade-package -P --reinstall-package --python-platform \
         --config-setting -C --env-file --script --color
 
-    # Pass 1: find the subcommand words and any `run --with` values.
+    # Pass 1: find the subcommand words and any `--with` values.
     set -l words
     set -l with_vals
     set -l skip_next false
@@ -52,6 +52,10 @@ function uv --wraps uv --description "uv with 3-day publish age guard on add, pi
         case pip tool
             if test "$words[2]" = install
                 set specs $words[3..-1]
+                # `uv tool install --with X` installs X into the tool env too.
+                for v in $with_vals
+                    set -a specs (string split ',' -- $v)
+                end
             end
         case run
             for v in $with_vals
