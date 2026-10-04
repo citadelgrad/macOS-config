@@ -2,30 +2,29 @@
 # Refresh with: chezmoi apply --refresh-externals
 
 # Oh My Zsh framework
+# oh-my-zsh publishes no tags or releases, so this pin is a commit SHA.
+# To bump it, edit the SHA in the URL below.
 [".oh-my-zsh"]
     type = "archive"
-    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-    exact = true
+    url = "https://github.com/ohmyzsh/ohmyzsh/archive/4d4cfc287e9d887b81242c0e431b5f49f9cec5c1.tar.gz"
     stripComponents = 1
     refreshPeriod = "168h"
 
 # Oh My Zsh plugins (installed via archive, not Homebrew)
 [".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
     type = "archive"
-    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
-    exact = true
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/refs/tags/v0.7.1.tar.gz"
     stripComponents = 1
     refreshPeriod = "168h"
 
 [".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
     type = "archive"
-    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
-    exact = true
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/refs/tags/0.8.0.tar.gz"
     stripComponents = 1
     refreshPeriod = "168h"
 
 # Fisher plugin manager for Fish shell
 [".config/fish/functions/fisher.fish"]
     type = "file"
-    url = "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
+    url = "https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish"
     refreshPeriod = "168h"
