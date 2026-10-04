@@ -159,6 +159,7 @@
       - git-filter-repo        # Fast git history rewriting
       - gitleaks               # Secret scanning for git repos
       - gh                     # GitHub CLI
+      - git-delta              # Syntax-highlighting git pager (delta)
       # Terminal tools
       - tmux                   # Terminal multiplexer
       - direnv                 # Directory-specific env vars
