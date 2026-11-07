@@ -40,15 +40,3 @@
 #     dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
 #     depth: 1
 #   tags: zsh
-
-# =============================================================================
-# ZSH PLUGINS (via Homebrew for better updates)
-# =============================================================================
-- name: Install zsh plugins via brew
-  community.general.homebrew:
-    name:
-      - zsh-autosuggestions
-      - zsh-syntax-highlighting
-    state: present
-  when: ansible_facts['os_family'] == 'Darwin'
-  tags: zsh

@@ -1,12 +1,14 @@
 ---
-- name: update homebrew
-  community.general.homebrew:
-    update_homebrew: true
+# All Homebrew packages live in the Brewfile at the repo root.
+- name: Update Homebrew
+  ansible.builtin.command: brew update
+  changed_when: false
   when: ansible_facts['os_family'] == 'Darwin'
+  tags: homebrew
 
-- name: Add Homebrew taps
-  community.general.homebrew_tap:
-    name:
-      - heroku/brew
-    state: present
+- name: Install packages from Brewfile
+  ansible.builtin.command: brew bundle --file={{ playbook_dir }}/Brewfile
+  register: brew_bundle
+  changed_when: "'Installing' in brew_bundle.stdout or 'Upgrading' in brew_bundle.stdout"
   when: ansible_facts['os_family'] == 'Darwin'
+  tags: homebrew
