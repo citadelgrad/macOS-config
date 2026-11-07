@@ -59,11 +59,12 @@ brew "node@24"
 brew "yarn"
 brew "python@3.12"
 brew "python@3.13"
+brew "uv"                 # manages Python versions and venvs (replaces pyenv)
 brew "poetry"
 brew "pdm"
 brew "rust"
 brew "golangci-lint"
-# uv, bun: installed by their own installers (see roles/ai-tools)
+# bun: installed by its own installer (~/.bun)
 
 # --- Lint, format, quality --------------------------------------------------
 brew "pre-commit"
