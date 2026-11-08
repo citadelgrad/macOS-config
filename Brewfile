@@ -6,11 +6,15 @@
 # Pruned from real usage (Claude Code transcripts + macOS app last-used dates), Nov 2026.
 
 # --- Taps -------------------------------------------------------------------
-tap "dicklesworthstone/tap"
-tap "marsanne/cask"
-tap "validatedev/tap"
-tap "scott/services", "git@github.com:citadelgrad/homebrew-services.git"   # private
-tap "scott/local", "git@github.com:citadelgrad/homebrew-local.git"         # private
+# Homebrew 7 refuses to load formulae and casks from non-official taps unless they are trusted.
+# `trusted:` below lists exactly what is trusted. Your own taps are trusted whole.
+# The private taps need SSH access to GitHub first (gh auth login). If brew bundle fails on them,
+# tap them by hand first:  brew tap scott/services git@github.com:citadelgrad/homebrew-services.git
+tap "dicklesworthstone/tap", trusted: { formulae: ["ubs", "cass", "cm", "xf"] }
+tap "marsanne/cask", trusted: { casks: ["cork"] }
+tap "validatedev/tap", trusted: { casks: ["brew-services-manager"] }
+tap "scott/services", "git@github.com:citadelgrad/homebrew-services.git", trusted: true   # private
+tap "scott/local", "git@github.com:citadelgrad/homebrew-local.git", trusted: true         # private
 
 # --- Shell, prompt, core CLI ------------------------------------------------
 brew "fish"
