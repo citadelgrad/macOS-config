@@ -8,11 +8,14 @@
 # --- Taps -------------------------------------------------------------------
 # Homebrew 7 refuses to load formulae and casks from non-official taps unless they are trusted.
 # `trusted:` below lists exactly what is trusted. Your own taps are trusted whole.
-# The private taps need SSH access to GitHub first (gh auth login). If brew bundle fails on them,
-# tap them by hand first:  brew tap scott/services git@github.com:citadelgrad/homebrew-services.git
+# The private taps clone over SSH. If the key isn't loaded, brew bundle hangs on a hidden passphrase prompt.
+# Load it once per computer (~/.ssh/config from chezmoi keeps it in the Keychain after that):
+#   ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+#   ssh -T git@github.com        # should say "successfully authenticated"
 tap "dicklesworthstone/tap", trusted: { formulae: ["ubs", "cass", "cm", "xf"] }
 tap "marsanne/cask", trusted: { casks: ["cork"] }
 tap "validatedev/tap", trusted: { casks: ["brew-services-manager"] }
+tap "hashicorp/tap", trusted: { formulae: ["terraform"] }
 tap "scott/services", "git@github.com:citadelgrad/homebrew-services.git", trusted: true   # private
 tap "scott/local", "git@github.com:citadelgrad/homebrew-local.git", trusted: true         # private
 
@@ -81,7 +84,7 @@ brew "semgrep"
 
 # --- Cloud and infra --------------------------------------------------------
 brew "awscli"
-brew "terraform"
+brew "hashicorp/tap/terraform"   # left homebrew-core after the license change
 brew "hcloud"
 brew "colima"
 brew "docker-compose"

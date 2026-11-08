@@ -1,0 +1,6 @@
+# Keep the key's passphrase in the macOS Keychain, so git and brew (private taps) never stop to ask for it.
+# One time per computer:  ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519

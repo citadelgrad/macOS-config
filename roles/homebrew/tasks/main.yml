@@ -6,6 +6,16 @@
   when: ansible_facts['os_family'] == 'Darwin'
   tags: homebrew
 
+# The private taps clone over SSH. Without a loaded key, ssh waits for a passphrase nobody can see and
+# brew bundle hangs. BatchMode makes ssh fail instead. `ssh -T` exits 1 when it authenticates, 255 when it can't.
+- name: Check SSH access to GitHub (private taps)
+  ansible.builtin.command: ssh -T -o BatchMode=yes -o ConnectTimeout=10 git@github.com
+  register: github_ssh
+  changed_when: false
+  failed_when: github_ssh.rc != 1
+  when: ansible_facts['os_family'] == 'Darwin'
+  tags: homebrew
+
 - name: Install packages from Brewfile
   ansible.builtin.command: brew bundle --file={{ playbook_dir }}/Brewfile
   register: brew_bundle
