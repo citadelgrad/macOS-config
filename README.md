@@ -38,18 +38,18 @@ Services come from two private taps (`scott/services`, `scott/local`), hosted at
 wrapper around code that lives outside Homebrew, so `brew bundle` installs the wrapper but does
 not start it. The new computer needs SSH access to GitHub first.
 
-**Services start empty.** Their old data is not migrated (decision: Nov 2026). Before you run
+**Most services start empty.** Their old data is not migrated (decision: Nov 2026). Exceptions: `~/.hermes` (with lightrag inside it) is copied, and the Graphiti memory graph is exported with `graphiti-migrate.sh`. Before you run
 `brew services start <name>`, put the code in place:
 
 | Service | Code the wrapper expects | How to get it |
 |---------|--------------------------|---------------|
-| lightrag | `~/services/lightrag/.venv/bin/lightrag-server` | Clone `https://github.com/HKUDS/LightRAG` to `~/.hermes/lightrag/LightRAG`, link `~/services/lightrag` to it, create the venv, install |
+| lightrag | `~/services/lightrag/.venv/bin/lightrag-server` | Comes with `~/.hermes` (the `hermes` section of `copy.sh`). `~/services` is a link into the drive. Stop lightrag before the final copy |
 | paperclip | `~/paperclip/server/node_modules/.bin/tsx` | Clone `https://github.com/paperclipai/paperclip` to `~/paperclip`, install dependencies |
 | zeno-backend, zeno-frontend | `/Volumes/qwiizlab/projects/zeno` | Comes with the `projects` section of `copy.sh` (or clone `citadelgrad/zeno`) |
 | beads-dashboard | not installed | Off by choice. Its formula watches `~/gt/baseball`, and `~/gt` is not migrated |
 | skill-cabinet | `~/.local/lib/node_modules/skill-cabinet` | Install the npm package under `~/.local` |
 | nixonnote | `~/Library/Application Support/NixonNote` | Created on first start |
-| hermes-backup-daily/weekly | `~/.local/bin/hermes-backup` | Comes with a Hermes install. Without Hermes the backups have nothing to back up. Do not start them until Hermes is set up |
+| hermes-backup-daily/weekly | `~/.local/bin/hermes-backup` | `~/.hermes` is copied, but `~/.local` is not (it is in `services-data`). Copy that one script, or reinstall Hermes, before you start these |
 
 Port assignments are in `home/dot_config/ports/ports.yaml`.
 
