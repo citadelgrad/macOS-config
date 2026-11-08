@@ -31,6 +31,25 @@ Ansible runs `brew bundle` in `roles/homebrew`. Non-Homebrew setup stays in Ansi
 `uv`, `ty`, `dcg` (roles/ai-tools), pip config (roles/python), oh-my-zsh (roles/zsh).
 Shell and app dotfiles (fish, wezterm, git, uv, pip) are managed by chezmoi under `home/`.
 
+## Services
+
+Services come from two private taps (`scott/services`, `scott/local`), hosted at
+`citadelgrad/homebrew-services` and `citadelgrad/homebrew-local`. Each formula is a launchd
+wrapper around a local checkout, so `brew bundle` installs the wrapper but does not start it.
+The new computer needs SSH access to GitHub first.
+
+| Service | Data to copy before `brew services start` |
+|---------|--------------------------------------------|
+| lightrag | `~/.hermes/lightrag` (838 MB); `~/services/lightrag` is a symlink to `~/.hermes/lightrag/LightRAG` |
+| hermes-backup-daily/weekly | `~/.local/bin/hermes-backup`, `~/.hermes` |
+| paperclip | `~/paperclip` (2.9 GB), `~/.paperclip` (4 GB, includes DB backups) |
+| zeno-backend/frontend | `/Volumes/qwiizlab/projects/zeno` (paths are absolute; edit the formulae if the path changes) |
+| nixonnote | `~/Library/Application Support/NixonNote`, `~/.config/nixonnote/env` |
+| skill-cabinet | `~/.local/lib/node_modules/skill-cabinet` |
+| beads-dashboard | `~/projects/oss/beads-dashboard`; it watches `~/gt/baseball` |
+
+Port assignments are in `home/dot_config/ports/ports.yaml`.
+
 ## Project Structure
 
 ```

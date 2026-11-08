@@ -9,6 +9,8 @@
 tap "dicklesworthstone/tap"
 tap "marsanne/cask"
 tap "validatedev/tap"
+tap "scott/services", "git@github.com:citadelgrad/homebrew-services.git"   # private
+tap "scott/local", "git@github.com:citadelgrad/homebrew-local.git"         # private
 
 # --- Shell, prompt, core CLI ------------------------------------------------
 brew "fish"
@@ -142,5 +144,19 @@ cask "validatedev/tap/brew-services-manager"
 cask "memory-cleaner"
 cask "micro-snitch"
 
-# --- Services (scott/services, scott/local taps) ----------------------------
-# Pending usage review. Add taps + formulae here once chosen.
+# --- Services (private taps above) -----------------------------------------
+# Formulae are thin launchd wrappers around local checkouts. Installing them does
+# NOT start them. Copy their data first (see "Services" in README.md), then:
+#   brew services start <name>
+# Active (busy):
+brew "scott/services/lightrag"               # needs ~/.hermes/lightrag, ~/services/lightrag
+brew "scott/services/hermes-backup-daily"    # needs ~/.local/bin/hermes-backup
+brew "scott/services/hermes-backup-weekly"
+brew "scott/local/paperclip"                 # needs ~/paperclip and ~/.paperclip
+# Nearly idle, kept by choice:
+brew "scott/services/zeno-backend"           # needs /Volumes/qwiizlab/projects/zeno
+brew "scott/services/zeno-frontend"
+brew "scott/services/nixonnote"
+brew "scott/services/skill-cabinet"
+brew "scott/services/beads-dashboard"        # needs ~/projects/oss/beads-dashboard
+# Not migrated: redis (idle), mission-control, hermes-webapi, hermes-workspace.
