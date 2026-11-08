@@ -1,3 +1,16 @@
 ---
 # Packages (formulae, casks, fonts) are managed in the Brewfile; see roles/homebrew.
 # Add non-Homebrew common setup here.
+
+# Touch ID for sudo. sudo_local survives macOS updates; /etc/pam.d/sudo does not.
+# Needs root: run the playbook with -K.
+- name: Enable Touch ID for sudo
+  ansible.builtin.copy:
+    src: sudo_local
+    dest: /etc/pam.d/sudo_local
+    owner: root
+    group: wheel
+    mode: "0444"
+  become: true
+  when: ansible_facts['os_family'] == 'Darwin'
+  tags: sudo

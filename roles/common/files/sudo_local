@@ -1,0 +1,5 @@
+# sudo_local: local config file which survives system update and is included for sudo
+# Managed by macOS-config (roles/common). Touch ID for sudo.
+# pam_reattach (Brewfile: pam-reattach) lets Touch ID work inside tmux. ignore_ssh: skip it over SSH.
+auth       optional       /opt/homebrew/lib/pam/pam_reattach.so ignore_ssh
+auth       sufficient     pam_tid.so
