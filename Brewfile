@@ -159,5 +159,6 @@ brew "scott/services/zeno-backend"           # /Volumes/qwiizlab/projects/zeno (
 brew "scott/services/zeno-frontend"
 brew "scott/services/nixonnote"
 brew "scott/services/skill-cabinet"          # npm package under ~/.local/lib/node_modules
-brew "scott/services/beads-dashboard"        # ~/projects/oss/beads-dashboard (copied with projects)
+# beads-dashboard: off. Its formula watches ~/gt/baseball, and ~/gt is not migrated.
+# brew "scott/services/beads-dashboard"
 # Not migrated: redis (idle), mission-control, hermes-webapi, hermes-workspace.

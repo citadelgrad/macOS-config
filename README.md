@@ -46,7 +46,7 @@ not start it. The new computer needs SSH access to GitHub first.
 | lightrag | `~/services/lightrag/.venv/bin/lightrag-server` | Clone `https://github.com/HKUDS/LightRAG` to `~/.hermes/lightrag/LightRAG`, link `~/services/lightrag` to it, create the venv, install |
 | paperclip | `~/paperclip/server/node_modules/.bin/tsx` | Clone `https://github.com/paperclipai/paperclip` to `~/paperclip`, install dependencies |
 | zeno-backend, zeno-frontend | `/Volumes/qwiizlab/projects/zeno` | Comes with the `projects` section of `copy.sh` (or clone `citadelgrad/zeno`) |
-| beads-dashboard | `~/projects/oss/beads-dashboard` | Comes with `projects`. It watches `~/gt/baseball`, so clone or create that folder first |
+| beads-dashboard | not installed | Off by choice. Its formula watches `~/gt/baseball`, and `~/gt` is not migrated |
 | skill-cabinet | `~/.local/lib/node_modules/skill-cabinet` | Install the npm package under `~/.local` |
 | nixonnote | `~/Library/Application Support/NixonNote` | Created on first start |
 | hermes-backup-daily/weekly | `~/.local/bin/hermes-backup` | Comes with a Hermes install. Without Hermes the backups have nothing to back up. Do not start them until Hermes is set up |
