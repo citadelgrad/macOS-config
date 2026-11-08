@@ -145,18 +145,19 @@ cask "memory-cleaner"
 cask "micro-snitch"
 
 # --- Services (private taps above) -----------------------------------------
-# Formulae are thin launchd wrappers around local checkouts. Installing them does
-# NOT start them. Copy their data first (see "Services" in README.md), then:
+# Formulae are thin launchd wrappers around code that lives outside Homebrew.
+# Installing them does NOT start them. Services start EMPTY on a new computer (old data
+# is not migrated). Put the code in place first (see "Services" in README.md), then:
 #   brew services start <name>
-# Active (busy):
-brew "scott/services/lightrag"               # needs ~/.hermes/lightrag, ~/services/lightrag
-brew "scott/services/hermes-backup-daily"    # needs ~/.local/bin/hermes-backup
+# Busy on the old computer:
+brew "scott/services/lightrag"               # clone HKUDS/LightRAG; venv at ~/services/lightrag/.venv
+brew "scott/services/hermes-backup-daily"    # useless until Hermes is installed (~/.local/bin/hermes-backup)
 brew "scott/services/hermes-backup-weekly"
-brew "scott/local/paperclip"                 # needs ~/paperclip and ~/.paperclip
+brew "scott/local/paperclip"                 # clone paperclipai/paperclip to ~/paperclip
 # Nearly idle, kept by choice:
-brew "scott/services/zeno-backend"           # needs /Volumes/qwiizlab/projects/zeno
+brew "scott/services/zeno-backend"           # /Volumes/qwiizlab/projects/zeno (copied with projects)
 brew "scott/services/zeno-frontend"
 brew "scott/services/nixonnote"
-brew "scott/services/skill-cabinet"
-brew "scott/services/beads-dashboard"        # needs ~/projects/oss/beads-dashboard
+brew "scott/services/skill-cabinet"          # npm package under ~/.local/lib/node_modules
+brew "scott/services/beads-dashboard"        # ~/projects/oss/beads-dashboard (copied with projects)
 # Not migrated: redis (idle), mission-control, hermes-webapi, hermes-workspace.

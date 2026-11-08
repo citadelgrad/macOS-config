@@ -35,18 +35,21 @@ Shell and app dotfiles (fish, wezterm, git, uv, pip) are managed by chezmoi unde
 
 Services come from two private taps (`scott/services`, `scott/local`), hosted at
 `citadelgrad/homebrew-services` and `citadelgrad/homebrew-local`. Each formula is a launchd
-wrapper around a local checkout, so `brew bundle` installs the wrapper but does not start it.
-The new computer needs SSH access to GitHub first.
+wrapper around code that lives outside Homebrew, so `brew bundle` installs the wrapper but does
+not start it. The new computer needs SSH access to GitHub first.
 
-| Service | Data to copy before `brew services start` |
-|---------|--------------------------------------------|
-| lightrag | `~/.hermes/lightrag` (838 MB); `~/services/lightrag` is a symlink to `~/.hermes/lightrag/LightRAG` |
-| hermes-backup-daily/weekly | `~/.local/bin/hermes-backup`, `~/.hermes` |
-| paperclip | `~/paperclip` (2.9 GB), `~/.paperclip` (4 GB, includes DB backups) |
-| zeno-backend/frontend | `/Volumes/qwiizlab/projects/zeno` (paths are absolute; edit the formulae if the path changes) |
-| nixonnote | `~/Library/Application Support/NixonNote`, `~/.config/nixonnote/env` |
-| skill-cabinet | `~/.local/lib/node_modules/skill-cabinet` |
-| beads-dashboard | `~/projects/oss/beads-dashboard`; it watches `~/gt/baseball` |
+**Services start empty.** Their old data is not migrated (decision: Nov 2026). Before you run
+`brew services start <name>`, put the code in place:
+
+| Service | Code the wrapper expects | How to get it |
+|---------|--------------------------|---------------|
+| lightrag | `~/services/lightrag/.venv/bin/lightrag-server` | Clone `https://github.com/HKUDS/LightRAG` to `~/.hermes/lightrag/LightRAG`, link `~/services/lightrag` to it, create the venv, install |
+| paperclip | `~/paperclip/server/node_modules/.bin/tsx` | Clone `https://github.com/paperclipai/paperclip` to `~/paperclip`, install dependencies |
+| zeno-backend, zeno-frontend | `/Volumes/qwiizlab/projects/zeno` | Comes with the `projects` section of `copy.sh` (or clone `citadelgrad/zeno`) |
+| beads-dashboard | `~/projects/oss/beads-dashboard` | Comes with `projects`. It watches `~/gt/baseball`, so clone or create that folder first |
+| skill-cabinet | `~/.local/lib/node_modules/skill-cabinet` | Install the npm package under `~/.local` |
+| nixonnote | `~/Library/Application Support/NixonNote` | Created on first start |
+| hermes-backup-daily/weekly | `~/.local/bin/hermes-backup` | Comes with a Hermes install. Without Hermes the backups have nothing to back up. Do not start them until Hermes is set up |
 
 Port assignments are in `home/dot_config/ports/ports.yaml`.
 
